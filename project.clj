@@ -10,6 +10,7 @@
                  [ring/ring-devel "1.2.1"]
                  [ring/ring-jetty-adapter "1.2.1"]
                  [compojure "1.1.6"]
+                 [com.cemerick/friend "0.2.1"]
                  [hiccup "1.0.4"]]
   :main ^:skip-aot shouter.web
   :uberjar-name "shouter-standalone.jar"

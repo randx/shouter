@@ -1,5 +1,6 @@
 (ns shouter.views.layout
-  (:require [hiccup.page :as h]))
+  (:require [hiccup.page :as h]
+            [cemerick.friend :as friend]))
 
 (defn common [title & body]
   (h/html5
@@ -14,7 +15,12 @@
    [:body
     [:header {:class "navbar navbar-default navbar-static-top"}
      [:div {:class "navbar-header"}
-      [:a {:class "navbar-brand"} "Shout"]]]
+      [:a {:class "navbar-brand" :href "/"} "Shout"]]
+     [:ul {:class "nav navbar-nav navbar-right"}
+      [:li
+       [:a {:class "" :href "#"} (get (friend/current-authentication) :username "anonymous")]]
+      [:li
+       [:a {:class "login" :href "/login"} "Login"]]]]
     [:main {:id "content"} 
      [:div {:class "container"} body]]]))
 
