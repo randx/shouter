@@ -1,0 +1,11 @@
+.shouts {
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.shouts li {
+  font-size: 15px;
+  border-bottom: 1px solid #EEE;
+  padding: 15px 0;
+}

@@ -9,14 +9,14 @@
     [:meta {:name "viewport" :content
             "width=device-width, initial-scale=1, maximum-scale=1"}]
     [:title title]
-    (h/include-css "/stylesheets/base.css"
-                 "/stylesheets/skeleton.css"
-                 "/stylesheets/screen.css")
-    (h/include-css "http://fonts.googleapis.com/css?family=Sigmar+One&v1")]
+    (h/include-css "/stylesheets/bootstrap.min.css"
+                 "/stylesheets/application.css")]
    [:body
-    [:div {:id "header"}
-     [:h1 {:class "container"} "SHOUTER"]]
-    [:div {:id "content" :class "container"} body]]))
+    [:header {:class "navbar navbar-default navbar-static-top"}
+     [:div {:class "navbar-header"}
+      [:a {:class "navbar-brand"} "Shout"]]]
+    [:main {:id "content"} 
+     [:div {:class "container"} body]]]))
 
 (defn four-oh-four []
   (common "Page Not Found"

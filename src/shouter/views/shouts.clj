@@ -4,20 +4,23 @@
             [hiccup.form :as form]))
 
 (defn shout-form []
-  [:div {:id "shout-form" :class "sixteen columns alpha omega"}
+  [:div 
    (form/form-to [:post "/"]
-                 (form/label "shout" "What do you want to SHOUT?")
-                 (form/text-area "shout")
-                 (form/submit-button "SHOUT!"))])
+                 [:div, {:class "form-group"}
+                  (form/label "shout" "What do you want to shout?")
+                  (form/text-area {:class "form-control"} "shout")]
+                 [:div, {:class "form-group"}
+                  (form/submit-button {:class "btn btn-primary"} "SHOUT!")])])
 
 (defn display-shouts [shouts]
-  [:div {:class "shouts sixteen columns alpha omega"}
+  [:ul, {:class "shouts"}
    (map
-    (fn [shout] [:h2 {:class "shout"} (h (:body shout))])
+    (fn [shout] [:li {:class "shout"} (h (:body shout))])
     shouts)])
 
 (defn index [shouts]
   (layout/common "SHOUTER"
                  (shout-form)
-                 [:div {:class "clear"}]
+                 [:hr]
+                 [:h2 "Shouts"]
                  (display-shouts shouts)))
