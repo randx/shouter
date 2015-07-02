@@ -16,11 +16,15 @@
     [:header {:class "navbar navbar-default navbar-static-top"}
      [:div {:class "navbar-header"}
       [:a {:class "navbar-brand" :href "/"} "Shout"]]
-     [:ul {:class "nav navbar-nav navbar-right"}
-      [:li
-       [:a {:class "" :href "#"} (get (friend/current-authentication) :username "anonymous")]]
-      [:li
-       [:a {:class "login" :href "/login"} "Login"]]]]
+     (if (friend/current-authentication)
+       [:ul {:class "nav navbar-nav navbar-right"}
+        [:li
+         [:a {:class "username" :href "#"} (get (friend/current-authentication) :username "anonymous")]]
+        [:li
+         [:a {:class "login" :href "/logout"} "Logout"]]]
+       [:ul {:class "nav navbar-nav navbar-right"}
+        [:li
+         [:a {:class "login" :href "/login"} "Login"]]])]
     [:main {:id "content"} 
      [:div {:class "container"} body]]]))
 
