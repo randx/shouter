@@ -6,3 +6,5 @@ log/*
 target
 logfile
 /pg/
+.lein-failures      
+.lein-repl-history

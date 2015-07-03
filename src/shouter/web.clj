@@ -7,6 +7,7 @@
             [cemerick.friend :as friend]
             [shouter.controllers.shouts :as shouts]
             [shouter.controllers.session :as session]
+            [shouter.controllers.users :as users]
             [shouter.views.layout :as layout]
             [shouter.models.migration :as schema]
             [shouter.models.user :as user]
@@ -16,6 +17,7 @@
 
 
 (defroutes routes
+  users/routes
   shouts/routes
   session/routes
   (friend/logout (ANY "/logout" request (ring.util.response/redirect "/"))) 

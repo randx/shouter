@@ -24,6 +24,8 @@
          [:a {:class "login" :href "/logout"} "Logout"]]]
        [:ul {:class "nav navbar-nav navbar-right"}
         [:li
+         [:a {:class "signup" :href "/signup"} "Sign up"]]
+        [:li
          [:a {:class "login" :href "/login"} "Login"]]])]
     [:main {:id "content"} 
      [:div {:class "container"} body]]]))
