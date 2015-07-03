@@ -16,22 +16,29 @@
   (:gen-class))
 
 
+(defn find-user [name]
+  (let [user (user/find-by-username name)]
+    {:username (get user :username)
+     :password  (get user :encrypted_password)}))
+
 (defroutes routes
   users/routes
   shouts/routes
   session/routes
-  (friend/logout (ANY "/logout" request (ring.util.response/redirect "/"))) 
+  (friend/logout (ANY "/logout" request (ring.util.response/redirect "/")))
   (route/resources "/")
   (route/not-found (layout/four-oh-four)))
 
-(def application 
+(def application
   (handler/site
-    (friend/authenticate 
+    (friend/authenticate
       routes
       {:allow-anon? true
        :login-uri "/login"
        :default-landing-uri "/"
-       :credential-fn (partial creds/bcrypt-credential-fn user/all)
+       :credential-fn (partial creds/bcrypt-credential-fn
+                               (fn [username]
+                                 (find-user username)))
        :workflows [(workflows/interactive-form)]})))
 
 (def reloadable-application
